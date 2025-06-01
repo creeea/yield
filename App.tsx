@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { PrivyProvider } from '@privy-io/react-native';
+import { PrivyProvider } from 'privy-react-native';
 
 export default function App() {
   return (
