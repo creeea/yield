@@ -6,7 +6,7 @@ import { PrivyProvider } from '@privy-io/react-native';
 export default function App() {
   return (
     <PrivyProvider
-      appId="YOUR_PRIVY_APP_ID"
+      appId="cmbdy8k89011cie0o1c0qowdn"
       environment="production"
     >
       <SafeAreaView style={styles.container}>
