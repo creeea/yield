@@ -29,7 +29,7 @@ export default function RootLayout() {
 
   return (
     <PrivyProvider
-      appId="your-app-id"
+      appId="cmbdy8k89011cie0o1c0qowdn"
       environment="production"
     >
       <Stack screenOptions={{ headerShown: false }}>
