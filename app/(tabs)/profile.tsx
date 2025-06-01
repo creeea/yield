@@ -1,5 +1,5 @@
-import { StyleSheet, View, Text, SafeAreaView, Platform } from 'react-native';
-import { usePrivy } from '@privy-io/react-native';
+import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { usePrivy } from '@privy-io/expo';
 import { Image } from 'expo-image';
 
 export default function ProfileScreen() {
@@ -67,11 +67,6 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#fff',
     overflow: 'hidden',
-    ...Platform.select({
-      web: {
-        transform: 'translateX(-50%)',
-      },
-    }),
   },
   avatar: {
     width: 100,

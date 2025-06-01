@@ -1,5 +1,5 @@
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
-import { usePrivy } from '@privy-io/react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { usePrivy } from '@privy-io/expo';
 import { LogOut, Moon, Bell, Shield, HelpCircle } from 'lucide-react-native';
 
 export default function SettingsScreen() {
@@ -65,11 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#f5f5f5',
-    ...Platform.select({
-      web: {
-        cursor: 'pointer',
-      },
-    }),
   },
   settingIcon: {
     marginRight: 16,

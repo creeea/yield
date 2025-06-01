@@ -1,5 +1,5 @@
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
-import { usePrivy } from '@privy-io/react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { usePrivy } from '@privy-io/expo';
 import { Image } from 'expo-image';
 
 export default function HomeScreen() {
@@ -72,11 +72,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 320,
     alignItems: 'center',
-    ...Platform.select({
-      web: {
-        cursor: 'pointer',
-      },
-    }),
   },
   buttonText: {
     fontFamily: 'Inter-Bold',
