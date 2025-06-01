@@ -1,17 +1,39 @@
-import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
-import { usePrivy } from 'privy-react-native';
+import { StyleSheet, View, Text, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
+import { usePrivy } from '@privy-io/react-native';
+import { LogOut, Moon, Bell, Shield, HelpCircle } from 'lucide-react-native';
 
 export default function SettingsScreen() {
-  const { logout } = usePrivy();
+  const { logout, user } = usePrivy();
+
+  const SettingItem = ({ icon: Icon, title, onPress, color = '#000' }) => (
+    <TouchableOpacity style={styles.settingItem} onPress={onPress}>
+      <View style={styles.settingIcon}>
+        <Icon size={24} color={color} />
+      </View>
+      <Text style={[styles.settingText, { color }]}>{title}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Settings</Text>
         
-        <TouchableOpacity style={styles.button} onPress={logout}>
-          <Text style={styles.buttonText}>Sign Out</Text>
-        </TouchableOpacity>
+        <View style={styles.section}>
+          <SettingItem icon={Moon} title="Dark Mode" onPress={() => {}} />
+          <SettingItem icon={Bell} title="Notifications" onPress={() => {}} />
+          <SettingItem icon={Shield} title="Privacy" onPress={() => {}} />
+          <SettingItem icon={HelpCircle} title="Help & Support" onPress={() => {}} />
+          
+          {user && (
+            <SettingItem
+              icon={LogOut}
+              title="Sign Out"
+              onPress={logout}
+              color="#FF3B30"
+            />
+          )}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -27,19 +49,33 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
+    fontFamily: 'Inter-Bold',
     fontSize: 32,
-    fontWeight: 'bold',
     marginBottom: 24,
   },
-  button: {
-    backgroundColor: '#ff3b30',
-    padding: 16,
-    borderRadius: 12,
-    alignItems: 'center',
+  section: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: 16,
+    overflow: 'hidden',
   },
-  buttonText: {
-    color: '#fff',
+  settingItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#f5f5f5',
+    ...Platform.select({
+      web: {
+        cursor: 'pointer',
+      },
+    }),
+  },
+  settingIcon: {
+    marginRight: 16,
+  },
+  settingText: {
+    fontFamily: 'Inter-Regular',
     fontSize: 16,
-    fontWeight: '600',
   },
 });

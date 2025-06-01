@@ -9,9 +9,15 @@ export default function TabLayout() {
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopColor: '#f5f5f5',
+          elevation: 0,
+          shadowOpacity: 0,
+          height: 60,
+          paddingBottom: 8,
         },
         tabBarActiveTintColor: '#007AFF',
-      }}>
+        tabBarInactiveTintColor: '#6B7280',
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

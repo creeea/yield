@@ -1,5 +1,6 @@
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
-import { usePrivy } from 'privy-react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView, Platform } from 'react-native';
+import { usePrivy } from '@privy-io/react-native';
+import { Image } from 'expo-image';
 
 export default function HomeScreen() {
   const { login, user } = usePrivy();
@@ -7,29 +8,21 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Welcome</Text>
-        <Text style={styles.subtitle}>Create your account</Text>
-        
-        <View style={styles.form}>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            secureTextEntry
-          />
+        <Image
+          source="https://images.pexels.com/photos/3277808/pexels-photo-3277808.jpeg"
+          style={styles.backgroundImage}
+          contentFit="cover"
+        />
+        <View style={styles.overlay}>
+          <Text style={styles.title}>Welcome Back</Text>
+          <Text style={styles.subtitle}>Sign in to continue</Text>
           
           <TouchableOpacity style={styles.button} onPress={login}>
-            <Text style={styles.buttonText}>Sign Up</Text>
+            <Text style={styles.buttonText}>Continue with Privy</Text>
           </TouchableOpacity>
           
           <Text style={styles.terms}>
-            By signing up, you agree to our Terms of Service and Privacy Policy
+            By continuing, you agree to our Terms of Service and Privacy Policy
           </Text>
         </View>
       </View>
@@ -44,45 +37,58 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     padding: 20,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
+    fontFamily: 'Inter-Bold',
     fontSize: 32,
-    fontWeight: 'bold',
+    color: '#fff',
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
+    fontFamily: 'Inter-Regular',
     fontSize: 18,
-    color: '#666',
+    color: '#fff',
     marginBottom: 32,
     textAlign: 'center',
   },
-  form: {
-    gap: 16,
-  },
-  input: {
-    backgroundColor: '#f5f5f5',
-    padding: 16,
-    borderRadius: 12,
-    fontSize: 16,
-  },
   button: {
-    backgroundColor: '#007AFF',
-    padding: 16,
+    backgroundColor: '#fff',
+    paddingVertical: 16,
+    paddingHorizontal: 32,
     borderRadius: 12,
+    width: '100%',
+    maxWidth: 320,
     alignItems: 'center',
+    ...Platform.select({
+      web: {
+        cursor: 'pointer',
+      },
+    }),
   },
   buttonText: {
-    color: '#fff',
+    fontFamily: 'Inter-Bold',
+    color: '#000',
     fontSize: 16,
-    fontWeight: '600',
   },
   terms: {
+    fontFamily: 'Inter-Regular',
     fontSize: 12,
-    color: '#666',
+    color: '#fff',
     textAlign: 'center',
     marginTop: 16,
+    maxWidth: 280,
   },
 });
